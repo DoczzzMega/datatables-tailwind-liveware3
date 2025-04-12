@@ -19,7 +19,12 @@
                     <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
                         <thead>
                         <tr>
-                            <th scope="col" class="rounded-tl-md px-6 py-3 text-start text-xs font-medium bg-slate-100/70 text-gray-500 uppercase dark:text-neutral-500 cursor-pointer hover:bg-gray-200">Id</th>
+                            <th scope="col" class="rounded-tl-md px-6 py-3 text-start text-xs font-medium bg-slate-100/70 text-gray-500 uppercase dark:text-neutral-500 cursor-pointer hover:bg-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <span>Id</span>
+                                    <img class="" width="18" src="{{asset('storage/img/arrow-down.svg')}}" alt="arrow-down">
+                                </div>
+                            </th>
                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium bg-slate-100/70 text-gray-500 uppercase dark:text-neutral-500 cursor-pointer hover:bg-gray-200">Name</th>
                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium bg-slate-100/70 text-gray-500 uppercase dark:text-neutral-500 cursor-pointer hover:bg-gray-200">Email</th>
                             <th scope="col" class="px-6 py-3 text-start text-xs font-medium bg-slate-100/70 text-gray-500 uppercase dark:text-neutral-500 cursor-pointer hover:bg-gray-200">Country</th>

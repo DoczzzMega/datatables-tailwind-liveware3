@@ -25,6 +25,13 @@ class UserList extends Component
             $this->redirectRoute('users');
         }
     }
+    public function updating($property, $value)
+    {
+        if($property == 'search') {
+            $this->resetPage();
+        }
+//        dump($property, $value);
+    }
     public function changeLimit(int $limit)
     {
         $this->limit = in_array($limit, $this->limitList) ? $limit : $this->limitList[0];
