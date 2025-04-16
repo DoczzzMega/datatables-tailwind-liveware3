@@ -8,6 +8,10 @@ use App\Models\Country;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Intervention\Image\ImageManager;
 use MoonShine\Laravel\Fields\Relationships\HasOne;
 use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\UI\Components\Layout\Box;
@@ -25,6 +29,8 @@ class UserResource extends ModelResource
     protected string $model = User::class;
 
     protected string $title = 'Пользователи';
+
+    protected int $itemsPerPage = 5;
 
     /**
      * @return list<FieldContract>
@@ -57,7 +63,22 @@ class UserResource extends ModelResource
                 ID::make(),
                 Text::make('Name'),
                 Text::make('Email'),
-                Image::make('Avatar'),
+                Image::make('Avatar')
+                    ->onApply(function ( $value , Model $item,){
+
+                        dd($value->getRealPath());
+                        $image = ImageManager::imagick()->read($value->getRealPath());
+                        $image->resize(300, 200);
+//                            ->encode();
+
+                        $filename = Str::uuid() . '.' . $value->getClientOriginalExtension();
+
+                        $image->save( $filename);
+
+//                        Storage::put('/photos' . $filename, $image);
+
+                        return 'photos/' . $filename;
+                    })
             ])
         ];
     }
